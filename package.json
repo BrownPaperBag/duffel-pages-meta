@@ -1,0 +1,19 @@
+{
+  "name": "duffel-pages-meta",
+  "version": "0.0.1",
+  "author": "Michael Robinson <mike@pagesofinterest.net>",
+  "description": "Meta data tab & output for Duffel Pages",
+  "contributors": [
+    {
+      "name": "Michael Robinson",
+      "email": "mike@pagesofinterest.net"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BrownPaperBag/duffel-pages-meta"
+  },
+  "dependencies": {
+    "controller-loader": ""
+  }
+}
