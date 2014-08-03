@@ -14,6 +14,7 @@
     "url": "https://github.com/BrownPaperBag/duffel-pages-meta"
   },
   "dependencies": {
-    "controller-loader": ""
+    "controller-loader": "",
+    "loopback-datasource-juggler-paginate": "latest"
   }
 }
