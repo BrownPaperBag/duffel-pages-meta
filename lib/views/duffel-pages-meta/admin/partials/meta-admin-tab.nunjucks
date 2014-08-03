@@ -1,0 +1,26 @@
+<div class="ng-application" application-name="admin-page-meta" ng-controller="PageMetaController"
+  cg-busy="blockingPromises" ng-init="page_id = {$ page.id $}">
+
+  <button ng-click="adminPageMetaTableParams.reload()" class="btn btn-default"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
+  <a class="btn btn-primary" ng-click="addMeta()"><i class="glyphicon glyphicon-plus"></i> Add Meta</a>
+
+  <table ng-table="adminPageMetaTableParams" show-filter="true" class="table" cg-busy="blockingPromises">
+    <tbody>
+      <tr ng-repeat="meta in $data">
+        <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'">
+          {{ meta.name }}
+        </td>
+        <td data-title="'Property'" filter="{ 'property': 'text' }" sortable="'property'">
+          {{ meta.property }}
+        </td>
+        <td data-title="'Content'" filter="{ 'content': 'text' }" sortable="'content'">
+          {{ meta.content }}
+        </td>
+        <td data-title="'Actions'">
+          <a class="btn btn-xs btn-primary" ng-click="editMeta(meta)">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
