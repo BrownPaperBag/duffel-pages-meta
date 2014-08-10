@@ -1,5 +1,5 @@
 <div class="ng-application" application-name="admin-page-meta" ng-controller="PageMetaController"
-  cg-busy="blockingPromises" ng-init="page_id = {$ page.id $}">
+  cg-busy="blockingPromises" ng-init="page_id = {$ page.id $}" ng-cloak>
 
   <button ng-click="adminPageMetaTableParams.reload()" class="btn btn-default"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
   <a class="btn btn-primary" ng-click="addMeta()"><i class="glyphicon glyphicon-plus"></i> Add Meta</a>
@@ -8,16 +8,23 @@
     <tbody>
       <tr ng-repeat="meta in $data">
         <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'">
-          {{ meta.name }}
+          <span ng-show="!meta.editing">{{ meta.name }}</span>
+          <input ng-show="meta.editing" placeholder="name" ng-model="meta.name" />
         </td>
         <td data-title="'Property'" filter="{ 'property': 'text' }" sortable="'property'">
-          {{ meta.property }}
+          <span ng-show="!meta.editing">{{ meta.property }}</span>
+
+          <input ng-show="meta.editing" placeholder="property" ng-model="meta.property"
+            typeahead="name as metaType.name for metaType in metaTypes" typeahead-on-select="propertySelected($item, $model, $label, meta)" />
         </td>
         <td data-title="'Content'" filter="{ 'content': 'text' }" sortable="'content'">
-          {{ meta.content }}
+          <span ng-show="!meta.editing">{{ meta.content }}</span>
+          <input ng-show="meta.editing" placeholder="content" ng-model="meta.content" />
         </td>
         <td data-title="'Actions'">
-          <a class="btn btn-xs btn-primary" ng-click="editMeta(meta)">Edit</a>
+          <a ng-show="!meta.editing" class="btn btn-xs btn-primary" ng-click="meta.editing = true"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+          <a ng-show="meta.editing" class="btn btn-xs btn-success" ng-click="saveMeta(meta)"><i class="glyphicon glyphicon-floppy-disk"></i> Save</a>
+          <a class="btn btn-xs btn-danger" ng-click="deleteMeta(meta, $index)"><i class="glyphicon glyphicon-trash"></i> Delete</a>
         </td>
       </tr>
     </tbody>
