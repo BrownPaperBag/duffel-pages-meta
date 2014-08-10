@@ -2,7 +2,8 @@
   'use strict';
 
   angular.module('admin-page-meta', [
-    'meta',
+    'meta', 'metaTypes',
+    'ui.bootstrap',
     'admin-page-meta.controllers',
     'ngTable', 'cgBusy'
   ]);
