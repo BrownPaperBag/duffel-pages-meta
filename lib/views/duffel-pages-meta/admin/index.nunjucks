@@ -1,0 +1,51 @@
+{% extends "/layouts/default-admin.nunjucks" %}
+
+{% block title %}Meta Defaults{% endblock %}
+
+{% block content %}
+    <div class="duffel-admin-wrapper">
+        <h1 class="text-center">Meta Defaults</h1>
+
+        {% cmsblock { name: "Default meta description", attributes: { class: "well" } } %}
+          <p>
+            Leaving "og:title" blank will cause the site to use the page title as default, which in most cases is desired
+          </p>
+        {% endcmsblock %}
+
+        <form method="post">
+
+          <input type="hidden" name="csrf" value="{$ csrf $}" />
+
+        {% for metaDefault in metaDefaults %}
+          <div class="meta-default">
+            <div class="meta-default__name">
+              <label for="{$ metaDefault.id $}-name">
+                Name
+              </label>
+              <input id="{$ metaDefault.id $}-name" name="meta_default[{$ metaDefault.id $}][name]" value="{$ metaDefault.name $}" />
+            </div>
+            <div class="meta-default__property">
+              <label for="{$ metaDefault.id $}-property">
+                Property
+              </label>
+              <input disabled id="{$ metaDefault.id $}-property" name="meta_default[{$ metaDefault.id $}][property]" value="{$ metaDefault.property $}" />
+            </div>
+            <div class="meta-default__content">
+              <label for="{$ metaDefault.id $}-content">
+                Content
+              </label>
+              <input id="{$ metaDefault.id $}-content" name="meta_default[{$ metaDefault.id $}][content]" value="{$ metaDefault.content $}" />
+            </div>
+            <input type="hidden" name="meta_default[{$ metaDefault.id $}][id]" value="{$ metaDefault.id $}" />
+          </div>
+
+          <hr />
+        {% endfor %}
+
+        <button class="btn btn-primary">Save</button>
+
+      </form>
+
+    </div>
+{% endblock %}
+
